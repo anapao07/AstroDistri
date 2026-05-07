@@ -22,14 +22,12 @@ jobs:
       - name: Instalar Dependencias
         run: |
           python -m pip install --upgrade pip
-          # Instalamos setuptools explícitamente para evitar el error de pkg_resources
           pip install setuptools wheel 
           pip install -r requirements.txt
 
       - name: Validar Estructura y Tests
         run: |
           python manage.py check
-          # Si tienes tests, descomenta la siguiente línea:
           # python manage.py test
 
   # --- 2: FRONTEND (React) ---

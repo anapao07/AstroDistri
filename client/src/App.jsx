@@ -1,11 +1,12 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { ProductsPage } from './pages/ProductsPage';
 import { ProductsFormPage } from './pages/ProductsFormPage';
-
+import { Navigation } from "./components/Navigation";
 
 function App() {
   return (
     <BrowserRouter>
+    <Navigation />
       <Routes>
         <Route path="/" element={<Navigate to="/products" />} />
         <Route path="/products" element={<ProductsPage />} />

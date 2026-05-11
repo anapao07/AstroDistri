@@ -1,10 +1,26 @@
 import axios from 'axios';
 
-// Definimos la URL base para que sea más fácil de mantener
+
 const productsApi = axios.create({
-    baseURL: 'http://127.0.0.1:8000/products/api/v1/products/'
+    baseURL: import.meta.env.VITE_API_URL
 });
 
 export const getAllProducts = () => {
-    return productsApi.get('/');
+     return productsApi.get('/');
+};
+
+export const createProducts = (product) => {
+    return productsApi.post('/', product);
+};
+
+export const deleteProducts = (id) => {
+    return productsApi.delete(`/${id}/`);
+};
+
+export const updateProducts = (id , product) => {
+    return productsApi.put(`/${id}/`, product);
+};
+
+export const getProduct = (id) => {
+    return productsApi.get(`/${id}/`);
 };

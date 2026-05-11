@@ -11,6 +11,7 @@ function App() {
         <Route path="/" element={<Navigate to="/products" />} />
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/products-create" element={<ProductsFormPage />} />
+        <Route path="/products/:id" element={<ProductsFormPage />} />
         <Route path="*" element={<div>404 - Página no encontrada</div>} />
       </Routes>
     </BrowserRouter>

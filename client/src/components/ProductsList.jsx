@@ -8,25 +8,21 @@ export function ProductsList() {
 
     useEffect(() => {
         async function loadProducts() {
-            try {
+        
                 const res = await getAllProducts(); 
                 setProducts(res.data || []); 
-            } catch (error) {
-                console.error("Error al cargar productos:", error);
-            }
+          
         }
         loadProducts();
     }, []);
 
     return (
         <div> 
-            {products.length === 0 ? (
-                <p>Cargando productos...</p>
-            ) : (
-                products.map(product => (
-                   < ProductsCard key={product.id} product={product} />
-                ))
-            )}
+           
+            {products.map((product) =>(
+                <ProductsCard key={product.id} product={product} />
+            ))}
+          
         </div>
     );
 }

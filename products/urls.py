@@ -6,7 +6,7 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, Sp
 
 router = routers.DefaultRouter()
 router.register(r'products', views.ProductsView, 'Products')
-
+router.register(r'statuses', views.StatusView, 'Statuses')
 
 urlpatterns = [
     path("api/v1/", include(router.urls)),

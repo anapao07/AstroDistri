@@ -5,13 +5,13 @@ export function ProductsCard({product}){
     const navigate = useNavigate()
 
     return (
-        <div style={{background:"#345678"}} 
+        <div className="bg-zinc-800 p-3 hover:bg-zinc-700 hover:cursor-pointer"
             onClick={() =>{
                 navigate(`/products/${product.id}`)
             }}
             >
-            <h1>{product.name}</h1>
-            <p>{product.description}</p>
+            <h1 className="font-bold uppercase">{product.name}</h1>
+            <p className="text-slate-400">{product.description}</p>
             <hr></hr>
 
         </div>

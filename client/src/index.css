@@ -4,5 +4,10 @@
 
 body {
   background: #020202;
-  color: white;
+  color: #a1a1aa; 
+  font-family: 'Inter', sans-serif; 
+}
+
+input {
+  color-scheme: dark;
 }

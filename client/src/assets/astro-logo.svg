@@ -1,0 +1,15 @@
+<svg width="400" height="120" viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="120" fill="none"/>
+  
+  <g transform="translate(10, 10)">
+    <circle cx="50" cy="50" r="28" fill="#1A365D" /> <ellipse cx="50" cy="50" rx="45" ry="12" fill="none" stroke="#3182CE" stroke-width="4" transform="rotate(-15, 50, 50)" />
+    
+    <rect x="85" y="35" width="12" height="12" fill="#E2E8F0" transform="rotate(15, 85, 35)" />
+    <rect x="10" y="55" width="10" height="10" fill="#CBD5E0" transform="rotate(-10, 10, 55)" />
+  </g>
+
+  <text x="120" y="72" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="38" fill="#1A365D">Astro</text>
+  <text x="225" y="72" font-family="Arial, Helvetica, sans-serif" font-weight="300" font-size="38" fill="#3182CE">Distri</text>
+  
+  <text x="122" y="95" font-family="Arial" font-size="12" letter-spacing="2" fill="#718096">LOGÍSTICA MAYORISTA</text>
+</svg>

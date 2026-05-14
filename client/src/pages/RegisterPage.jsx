@@ -12,26 +12,39 @@ export function RegisterPage() {
     });
     const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (formData.password !== formData.re_password) {
-            return toast.error("Las contraseñas no coinciden");
-        }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    if (formData.password !== formData.re_password) {
+        return toast.error("Las contraseñas no coinciden");
+    }
 
-        try {
-            await api.post('auth/registration/', {
-                username: formData.username,
-                email: formData.email,
-                password: formData.password,
-            });
-            toast.success('Registro exitoso. ¡Ahora puedes loguearte!');
-            navigate('/login');
-        } catch (error) {
-            const errorMsg = error.response?.data ? Object.values(error.response.data)[0] : "Error al registrar";
-            toast.error(String(errorMsg));
+    try {
+        await api.post('auth/registration/', {
+            username: formData.username,
+            email: formData.email,
+            password1: formData.password, 
+            password2: formData.re_password,
+        });
+        
+        toast.success('Registro exitoso');
+        navigate('/login');
+    } catch (error) {
+        const errorData = error.response?.data;
+        
+        if (errorData) {
+            if (errorData.username) {
+                toast.error("El nombre de usuario ya existe");
+            } else if (errorData.password1) {
+                toast.error("La contraseña es requerida o no es válida");
+            } else {
+                toast.error("Error en los datos enviados");
+            }
+        } else {
+            toast.error("Error de conexión con el servidor");
         }
-    };
-
+    }
+};
     return (
         <div className="max-w-md mx-auto mt-10 p-6 rounded-lg shadow-xl">
             <h2 className="text-2xl font-bold mb-6 text-center text-slate-800">Crear Cuenta</h2>

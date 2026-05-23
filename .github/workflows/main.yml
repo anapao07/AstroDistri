@@ -25,14 +25,17 @@ jobs:
           pip install setuptools wheel 
           pip install -r requirements.txt
 
-      # - name: Validar Estructura y Tests
-      #   run: |
-      #     # python manage.py check
-      #     # python manage.py test
-            
       - name: Check linting
         run: |
           ruff check .
+
+      - name: Validar Estructura y Tests
+        env:
+        DB_ENGINE: django.db.backends.sqlite3
+        DB_NAME: ':memory:'
+        run: |
+          python manage.py check
+          python manage.py test
 
   # --- 2: FRONTEND (React) ---
   frontend-ci:

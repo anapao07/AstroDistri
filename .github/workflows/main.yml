@@ -31,8 +31,8 @@ jobs:
 
       - name: Validar Estructura y Tests
         env:
-        DB_ENGINE: django.db.backends.sqlite3
-        DB_NAME: ':memory:'
+          DB_ENGINE: django.db.backends.sqlite3
+          DB_NAME: ':memory:'
         run: |
           python manage.py check
           python manage.py test

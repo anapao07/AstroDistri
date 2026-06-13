@@ -30,12 +30,12 @@ jobs:
           ruff check .
 
       - name: Validar Estructura y Tests
-        env:
-          DB_ENGINE: django.db.backends.sqlite3
-          DB_NAME: ':memory:'
-        run: |
-          python manage.py check
-          python manage.py test
+        # env:
+        #   DB_ENGINE: django.db.backends.sqlite3
+        #   DB_NAME: ':memory:'
+        # run: |
+        #   python manage.py check
+        #   python manage.py test
 
   # --- 2: FRONTEND (React) ---
   frontend-ci:

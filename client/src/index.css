@@ -2,12 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  background: #020202;
-  color: #a1a1aa; 
-  font-family: 'Inter', sans-serif; 
+@layer base {
+  body {
+    @apply bg-[#020202] text-[#a1a1aa] font-['Inter',sans-serif] transition-colors duration-300;
+  }
+  
+  body.light-theme {
+    @apply bg-gray-100 text-gray-900;
+  }
 }
 
 input {
   color-scheme: dark;
+}
+
+.light-theme input {
+  color-scheme: light;
 }

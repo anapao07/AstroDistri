@@ -178,8 +178,8 @@ SPECTACULAR_SETTINGS = {
 }
 
 # Configuración de Allauth
-ACCOUNT_EMAIL_REQUIRED = False # Cambia a True para validar emails
-ACCOUNT_AUTHENTICATION_METHOD = 'username'
+ACCOUNT_SIGNUP_FIELDS = ['username*', 'password1*', 'password2*']
+ACCOUNT_LOGIN_METHODS = {'username'}
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

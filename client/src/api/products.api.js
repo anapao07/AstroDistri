@@ -14,6 +14,14 @@ export const getAllProducts = () => {
      return productsApi.get('/');
 };
 
+export const bulkUploadProducts = (formData) => {
+    return productsApi.post('/bulk_upload/', formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+    });
+};
+
 export const createProducts = (product) => {
     return productsApi.post('/', product);
 };

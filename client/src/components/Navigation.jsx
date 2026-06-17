@@ -1,11 +1,13 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState, useEffect, useRef } from 'react';
 import { AuthContext } from '../context/AuthContext';
+import { bulkUploadProducts } from '../api/products.api';
 import logoImg from '../assets/astroLogo.svg'; 
 
 export function Navigation() {
     const { user, logoutUser } = useContext(AuthContext);
     const navigate = useNavigate();
+    const fileInputRef = useRef(null);
     
     const [isDarkMode, setIsDarkMode] = useState(() => {
         const savedTheme = localStorage.getItem('theme');
@@ -27,6 +29,26 @@ export function Navigation() {
     const handleLogout = () => {
         logoutUser();
         navigate('/login');
+    };
+
+    const handleFileUpload = async (event) => {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const formData = new FormData();
+        formData.append('file', file);
+
+        try {
+            await bulkUploadProducts(formData);
+            alert('Bulk upload successful!');
+            window.location.reload(); // Refresh the page to update the list
+        } catch (error) {
+            console.error('Error uploading file:', error);
+            const errorMessage = error.response?.data?.error 
+                ? JSON.stringify(error.response.data.error) 
+                : 'Failed to upload file.';
+            alert(`Error: ${errorMessage}`);
+        }
     };
 
     return (
@@ -55,9 +77,25 @@ export function Navigation() {
                     </button>
 
                     {user && (
-                        <Link to="/products-create" className='bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-medium transition-all text-sm'>
-                            + Create Product
-                        </Link>
+                        <>
+                            <button 
+                                onClick={() => fileInputRef.current.click()}
+                                className='bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium transition-all text-sm'
+                            >
+                                Bulk Upload
+                            </button>
+                            <input 
+                                type="file" 
+                                ref={fileInputRef}
+                                accept=".csv, .xlsx, .xls" 
+                                onChange={handleFileUpload} 
+                                className="hidden"
+                            />
+
+                            <Link to="/products-create" className='bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-medium transition-all text-sm'>
+                                + Create Product
+                            </Link>
+                        </>
                     )}
                     {user ? (
                         <button onClick={handleLogout} className={`px-4 py-2 rounded-lg font-medium text-sm transition-all
